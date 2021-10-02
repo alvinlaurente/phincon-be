@@ -1,0 +1,49 @@
+{
+  "name": "pokemon-be",
+  "version": "1.0.0",
+  "description": "Pokemon BE",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server/app --exec babel-node",
+    "lint:fix": "eslint server/ --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:migrate": "sequelize db:migrate",
+    "db:seed:all": "sequelize db:seed:all --debug",
+    "db:migrate:refresh": "sequelize db:migrate:undo:all && sequelize db:migrate",
+    "db:refresh:all": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all --debug"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ""
+    ]
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "Alvin Laurent Ertanto",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0"
+  }
+}
