@@ -24,6 +24,15 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+    rename_ctr: {
+      primaryKey: false,
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+        notNull: true,
+        notEmpty: true,
+      },
+    },
   }, {
     sequelize,
     modelName: 'myPokemons',
