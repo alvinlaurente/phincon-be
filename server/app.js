@@ -10,10 +10,9 @@ require('dotenv').config();
 const app = express();
 app.use(cors({
   credentials: true,
-  exposedHeaders: ['Set-Cookie'],
   methods: 'GET,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
-  allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+  allowedHeaders: 'Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept',
 }));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.set('views', path.join(__dirname, '/views'));

@@ -16,20 +16,20 @@ class myPokemonAPI {
 
   static catchPokemon = async (req, res) => {
     try {
-      const { id, name } = req.body;
+      const { id, name, image } = req.body;
       const idInt = parseInt(id, 10);
 
       const isIdExist = await myPokemons.findOne({ where: { id: idInt } });
-      if (isIdExist) return res.status(409).json({ message: 'You already have the pokemon.' });
+      if (isIdExist) return res.json({ message: 'You already have the pokemon.' });
 
-      const random = Math.random();
-      if (random < 0.5) return res.status(401).json({ random: `${random * 100}` });
+      const random = Math.floor(Math.random() * 100);
+      if (random < 50) return res.json({ random: `${random}`, message: 'You failed to catch the Pokemon' });
 
       return await myPokemons.create({
-        id: idInt, name, url: `https://pokeapi.co/api/v2/pokemon/${id}/`, rename_ctr: 0,
+        id: idInt, name, url: `https://pokeapi.co/api/v2/pokemon/${id}/`, image, rename_ctr: 0,
       })
         .then((data) => res.status(201).json({
-          status: 201, message: `Pokemon with ID ${idInt} named as ${name} has been added to your pokemon`, data, random: `${random * 100}`,
+          status: 201, message: `Pokemon with ID ${idInt} named as ${name} has been added to your pokemon`, data, random: `${random}`,
         }))
         .catch((e) => res.status(500).json({ message: 'Something broken.' }));
     } catch {
@@ -39,14 +39,14 @@ class myPokemonAPI {
 
   static releasePokemon = async (req, res) => {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
       const idInt = parseInt(id, 10);
 
       const isIdExist = await myPokemons.findOne({ where: { id: idInt } });
-      if (!isIdExist) return res.status(409).json({ message: 'You don\'t have the pokemon.' });
+      if (!isIdExist) return res.json({ message: 'You don\'t have the pokemon.' });
 
       const random = Math.floor(Math.random() * 100) + 1;
-      if (!isPrimeNum(random)) return res.status(401).json({ message: 'Not Prime', random: `${random}` });
+      if (!isPrimeNum(random)) return res.json({ message: 'Not Prime', random: `${random}` });
 
       return await myPokemons.destroy({ where: { id: idInt } })
         .then(() => res.status(200).json({ status: 200, message: `Pokemon with ID of ${id} has been released.` }))

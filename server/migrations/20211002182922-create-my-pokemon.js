@@ -15,6 +15,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      image: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       rename_ctr: {
         allowNull: false,
         type: Sequelize.INTEGER,

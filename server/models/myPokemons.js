@@ -34,6 +34,16 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+    image: {
+      primaryKey: false,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        min: 33,
+        isUrl: true,
+        notEmpty: true,
+      },
+    },
     rename_ctr: {
       primaryKey: false,
       type: DataTypes.INTEGER,
