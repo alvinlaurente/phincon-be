@@ -9,27 +9,37 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
         isInt: true,
-        notNull: true,
         notEmpty: true,
       },
     },
     name: {
       primaryKey: false,
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         min: 3,
-        notNull: true,
+        notEmpty: true,
+      },
+    },
+    url: {
+      primaryKey: false,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        min: 33,
+        isUrl: true,
         notEmpty: true,
       },
     },
     rename_ctr: {
       primaryKey: false,
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
         isInt: true,
-        notNull: true,
         notEmpty: true,
       },
     },
