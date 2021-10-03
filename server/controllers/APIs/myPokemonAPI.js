@@ -46,10 +46,10 @@ class myPokemonAPI {
       if (!isIdExist) return res.json({ message: 'You don\'t have the pokemon.' });
 
       const random = Math.floor(Math.random() * 100) + 1;
-      if (!isPrimeNum(random)) return res.json({ message: 'Not Prime', random: `${random}` });
+      if (!isPrimeNum(random)) return res.json({ message: `${random} is not a prime number`, random: `${random}` });
 
       return await myPokemons.destroy({ where: { id: idInt } })
-        .then(() => res.status(200).json({ status: 200, message: `Pokemon with ID of ${id} has been released.` }))
+        .then(() => res.status(200).json({ status: 200, message: `${random} is a prime number.` }))
         .catch((e) => res.status(500).json({ message: 'Something broken.' }));
     } catch {
       return res.status(500).json({ message: 'Error Internal Server!' });
